@@ -10,7 +10,7 @@
     <h1>Author List</h1>
     <ul>
         @foreach($authors as $author)
-            <li>{{ $author['id'] }} - {{ $author['name'] }}</li>
+            <li>{{ $author['name'] }}</li>
         @endforeach
     </ul>
 </body>
