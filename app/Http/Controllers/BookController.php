@@ -7,10 +7,13 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-    public function index() {
+    public function index() 
+    {
         $book = Book::all();
-        return view('books',[
-            'books' => $book
-        ]);
+        return response()->json([
+            'success' => true,
+            'message' => 'Get All Resources',
+            'data' => $book
+        ], 200);
     }
 }
