@@ -18,8 +18,8 @@ return new class extends Migration
             $table->integer('price');
             $table->integer('stok');
             $table->string('cover_photo')->nullable();
-            $table->unsignedBigInteger('genres_id');
-            $table->unsignedBigInteger('authors_id');
+            $table->unsignedBigInteger('genre_id');
+            $table->unsignedBigInteger('author_id');
             $table->timestamps();
         });
     }
