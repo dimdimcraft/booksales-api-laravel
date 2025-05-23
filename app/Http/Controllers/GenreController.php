@@ -52,4 +52,72 @@ public function index()
             'data' => $genre
         ], 201);
     }
+
+    public function show($id)
+    {
+        $genre = Genre::find($id);
+        if (!$genre) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Resource Not Found'
+            ], 404);
+        }
+        return response()->json([
+            'success' => true,
+            'message' => 'Get Resource',
+            'data' => $genre
+        ], 200);
+    }
+
+    public function update(Request $request, string $id)
+    {
+        // cari data
+        $genre = Genre::find($id);   
+        if (!$genre) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Resource Not Found'
+            ], 404);
+        }
+
+        // cek validasi
+        $validator = Validator::make($request->all(),[
+            'name' => 'string|max:255',
+            'description' => 'string'
+        ]);
+
+        // cek validator
+        if($validator->fails()){
+            return response()->json([
+                'success' => false,
+                'message' => $validator->errors()
+            ], 422);
+        }
+
+        // update data
+        $genre->update($request->all());
+
+        // response
+        return response()->json([
+            'success' => true,
+            'message' => 'Resource Updated',
+            'data' => $genre
+        ], 200);
+    }
+
+    public function destroy($id)
+    {
+        $genre = Genre::find($id);
+        if (!$genre) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Resource Not Found'
+            ], 404);
+        }
+        $genre->delete();
+        return response()->json([
+            'success' => true,
+            'message' => 'Resource Deleted'
+        ], 200);
+    }
 }
