@@ -72,7 +72,7 @@ public function index()
     public function update(Request $request, string $id)
     {
         // cari data
-        $genre = Genre::find($id);   
+        $genre = Genre::find($id);
         if (!$genre) {
             return response()->json([
                 'success' => false,
